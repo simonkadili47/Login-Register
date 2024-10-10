@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
@@ -12,29 +13,21 @@ import Login from './Login';
 import Final from './Components/steps/Final';
 import Footer from './Components/Footer';
 
-// Stepper context type definition
-type StepperContextType = {
-  userData: object;
-  setUserData: React.Dispatch<React.SetStateAction<object>>;
-  finalData: any[];
-  setFinalData: React.Dispatch<React.SetStateAction<any[]>>;
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-};
+import { UserData, StepperContextType } from './types/StepperTypes';
+
 
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [userData, setUserData] = useState({});
-  const [finalData, setFinalData] = useState([]);
+  const [userData, setUserData] = useState<UserData>({});
+  const [finalData, setFinalData] = useState<any[]>([]);
   const [isFinalStepComplete, setIsFinalStepComplete] = useState(false);
 
-  // Step array for the stepper
   const steps = [
     "Personal Details",
     "Identification Details",
     "Information Verification",
   ];
 
-  // Function to display the current step
   const displayStep = (step: number) => {
     switch (step) {
       case 0:
@@ -48,7 +41,6 @@ const App: React.FC = () => {
     }
   };
 
-  // Function to handle step navigation
   const handleClick = (direction?: string) => {
     if (direction === "register") {
       setIsFinalStepComplete(true);
@@ -65,7 +57,6 @@ const App: React.FC = () => {
     }
   };
 
-  // Stepper context value
   const stepperContextValue: StepperContextType = {
     userData,
     setUserData,
@@ -81,7 +72,7 @@ const App: React.FC = () => {
           setCurrentStep={setCurrentStep} 
           setIsFinalStepComplete={setIsFinalStepComplete}
         />
-        <div className="flex flex-col min-h-screen"> 
+        <div className="flex flex-col min-h-screen font-poppins"> 
           <div className="flex-grow"> 
             <Routes>
               <Route path="/login" element={<Login />} />
@@ -131,7 +122,6 @@ const ResetStepperState: React.FC<{ setCurrentStep: React.Dispatch<React.SetStat
 
   useEffect(() => {
     if (location.pathname === '/register') {
-      // Reset to the first step and mark as not final
       setCurrentStep(0);
       setIsFinalStepComplete(false);
     }

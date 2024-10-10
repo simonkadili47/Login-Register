@@ -16,9 +16,9 @@ const Header: React.FC = () => {
           <p className="text-lg sm:text-xl">New Account Registration</p>
         </div>
       </div>
-      <div className="left-0 right-0 border-b border-gray-300 mt-6 z-0"></div>
+      <div className="border-b border-gray-300  mx-16 mt-0 w-full"></div> 
     </div>
   );
 };
 
-export default Header;
+export default Header; 

@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LOGO from './assets/LOGO-2-final.png';
 
 const Login: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center font-poppins justify-center bg-white">
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold text-center">Log In</h1>
+        {/* Logo added here */}
+        <div className="flex justify-center mb-6">
+          <img src={LOGO} alt="Logo" className="h-24" />
+        </div>
+
+        <h1 className="text-3xl font-bold text-center mt-16">Log In</h1>
         
         <div className="text-customgray text-lg font-semibold pt-2 text-center">
           <p className="text-base sm:text-lg leading-snug">

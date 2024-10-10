@@ -4,7 +4,13 @@ import flag from '../steps/flag.jpg';
 import { IoIosArrowDown } from "react-icons/io";
 
 const Personaldetails: React.FC = () => {
-  const { userData, setUserData } = useContext(StepperContext);
+  const context = useContext(StepperContext);
+
+  if (!context) {
+    return <div>Error: StepperContext is not available</div>;
+  }
+
+  const { userData, setUserData } = context;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setUserData({
@@ -15,7 +21,9 @@ const Personaldetails: React.FC = () => {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
-      <h2 className='text-black font-bold text-xl md:text-2xl'>Provide Your Personal Information</h2>
+      <h2 className="text-base sm:text-lg md:text-xl text-black font-bold whitespace-nowrap">
+  Provide Your Personal Information
+</h2>
       <h3 className='text-md md:text-lg text-gray-400 mt-1'>Please enter your personal details</h3>
       <form className="mt-6"> 
         <div className="flex flex-col sm:flex-row mb-4">
@@ -98,11 +106,11 @@ const Personaldetails: React.FC = () => {
             </span>
             
             <input
-              type="text" // Changed to "text" to avoid issues with number formatting
+              type="text" 
               name="phone" 
               onChange={handleChange}
-              className="w-full pl-32 pr-8 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-uppercase text-sm" // Reduced padding right and set smaller text size
-              placeholder="Enter your phone number" // Kept concise
+              className="w-full pl-32 pr-8 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-uppercase text-sm"
+              placeholder="Enter your phone number" 
             />
           </div>
         </div>

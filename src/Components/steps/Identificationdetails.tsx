@@ -1,25 +1,36 @@
 import React, { useContext } from "react";
 import { StepperContext } from "../../Context/StepperContext";
 import { FaUser } from "react-icons/fa";
+import { IoImages } from "react-icons/io5";
+import { FaFolder } from "react-icons/fa";
 
-const Identificationdetails: React.FC = () => {
-  const { userData, setUserData } = useContext(StepperContext);
+const IdentificationDetails: React.FC = () => {
+  const context = useContext(StepperContext);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserData({
-      ...userData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  if (!context) {
+    return <div>Error: StepperContext not found</div>;
+  }
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    console.log("Uploaded image:", file);
-  };
+  const { userData, setUserData } = context;
 
-  const handleDocumentUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const document = e.target.files?.[0];
-    console.log("Uploaded document:", document);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => {
+    const { name, value, files } = e.target as HTMLInputElement;
+
+    if (files) {
+      const file = files[0];
+      if (name === "imageUpload") {
+        console.log("Uploaded image:", file);
+      } else if (name === "documentUpload") {
+        console.log("Uploaded document:", file);
+      }
+    } else {
+      setUserData({
+        ...userData,
+        [name]: value,
+      });
+    }
   };
 
   return (
@@ -27,9 +38,12 @@ const Identificationdetails: React.FC = () => {
       <h2 className="text-black font-bold text-2xl">
         Enter Identification Details
       </h2>
-      <h3 className="text-lg text-gray-400">
-        Please submit your identification information
-      </h3>
+
+      <div className="flex items-center justify-center lg:justify-start lg:mr-6 lg:ml-32"> 
+        <h3 className="text-base sm:text-lg text-gray-400 text-center lg:text-left lg:w-auto">
+          Please submit your identification information
+        </h3>
+      </div>
 
       <h4 className="mt-4 text-left text-black font-bold">
         Upload a recent passport-size photo for official use
@@ -43,19 +57,22 @@ const Identificationdetails: React.FC = () => {
         <div className="ml-4">
           <label
             htmlFor="imageUpload"
-            className="w-60 sm:w-72 md:w-96 lg:w-[28rem] xl:w-[30rem] h-16 sm:h-20 bg-white border-2 border-gray-200 rounded-md flex items-center justify-center cursor-pointer text-gray-400"
+            className="w-60 sm:w-72 md:w-96 lg:w-[28rem] xl:w-[30rem] h-20 sm:h-24 bg-white border-2 border-gray-200 rounded-md flex flex-col items-center justify-center cursor-pointer text-gray-400"
           >
-            <span className="text-customblue font-bold mr-2">
-              Click or Drop
-            </span>{" "}
-            here to upload
+            <IoImages className="text-customblue text-5xl mb-2" />
+            <div className="inline-flex items-center">
+              <span className="text-customblue font-bold mr-1">
+                Click or Drop
+              </span>
+              <span className="text-gray-400">here to upload</span>
+            </div>
             <input
               type="file"
               id="imageUpload"
               name="imageUpload"
               accept="image/*"
               className="hidden"
-              onChange={handleImageUpload}
+              onChange={handleChange}
             />
           </label>
         </div>
@@ -63,13 +80,16 @@ const Identificationdetails: React.FC = () => {
 
       <form className="mt-6">
         <div className="mb-6 mt-6">
-          <label className="block text-black text-md font-bold mb-2 text-left" htmlFor="identificationType">
+          <label
+            className="block text-black text-md font-bold mb-2 text-left"
+            htmlFor="identificationType"
+          >
             Identification Type
           </label>
           <select
             name="identificationType"
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
           >
             <option value="">--Select identification type--</option>
             <option value="National Id">National Id</option>
@@ -78,20 +98,19 @@ const Identificationdetails: React.FC = () => {
         </div>
 
         <div className="mb-6 mt-6">
-          <label className="block text-black text-md font-bold mb-2 text-left" htmlFor="documentUpload">
-            Upload document / image
-          </label>
           <label
             htmlFor="documentUpload"
-            className="w-full h-20 border-2 border-dashed border-customblue bg-customGray rounded-md flex items-center justify-center cursor-pointer text-gray-400"
+            className="w-full h-32 border-2 border-dashed border-customblue bg-customGray rounded-md flex flex-col items-center justify-center cursor-pointer text-gray-400"
           >
+            <FaFolder className="text-customblue text-8xl sm:text-6xl md:text-7xl lg:text-7xl mt-2 mb-2" />
             <div className="text-center">
               <span className="text-customblue font-bold mr-2">
                 Click or Drop
-              </span>{" "}
+              </span>
               here to upload
-              <p className="mt-1 text-sm text-gray-500">
-                Upload a clear copy of your identification document (PDF or image format).
+              <p className="mt-1 mb-6 text-sm text-gray-500">
+                Upload a clear copy of your identification document (PDF or
+                image format).
               </p>
             </div>
             <input
@@ -100,23 +119,26 @@ const Identificationdetails: React.FC = () => {
               name="documentUpload"
               accept="application/pdf, image/*"
               className="hidden"
-              onChange={handleDocumentUpload}
+              onChange={handleChange}
             />
           </label>
         </div>
 
         <div className="mb-6 mt-6">
-          <label className="block text-black text-md font-bold mb-2 text-left" htmlFor="role">
+          <label
+            className="block text-black text-md font-bold mb-2 text-left"
+            htmlFor="role"
+          >
             Are you a developer or proprietor?
           </label>
           <select
             name="role"
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
           >
-            <option value="">--Select identification--</option>
-            <option value="developer">developer</option>
-            <option value="proprietor">proprietor</option>
+            <option value="">--Select role--</option>
+            <option value="developer">Developer</option>
+            <option value="proprietor">Proprietor</option>
           </select>
         </div>
       </form>
@@ -124,4 +146,4 @@ const Identificationdetails: React.FC = () => {
   );
 };
 
-export default Identificationdetails;
+export default IdentificationDetails;
