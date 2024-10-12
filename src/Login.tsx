@@ -8,10 +8,10 @@ const Login: React.FC = () => {
       <div className="w-full max-w-md">
         {/* Logo added here */}
         <div className="flex justify-center mb-6">
-          <img src={LOGO} alt="Logo" className="h-24" />
+          <img src={LOGO} alt="Logo" className="h-48" />
         </div>
 
-        <h1 className="text-3xl font-bold text-center mt-16">Log In</h1>
+        <h1 className="text-3xl font-bold text-center mt-8">Log In</h1>
         
         <div className="text-customgray text-lg font-semibold pt-2 text-center">
           <p className="text-base sm:text-lg leading-snug">
