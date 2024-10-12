@@ -43,27 +43,21 @@ const Stepper: React.FC<StepperProps> = ({ steps, currentStep }) => {
       newSteps.map((step, index) => (
         <div key={index} className={`flex items-center ${index !== newSteps.length - 1 ? "w-full" : ""}`}>
           <div
-            className={`absolute mb-16 justify-center text-md whitespace-nowrap ${
-              step.completed ? "text-black" : step.selected ? "text-customblue" : "text-gray-500"
-            } overflow-hidden text-ellipsis`}
+            className={`absolute mb-16 justify-center text-md whitespace-nowrap ${step.completed ? "text-black" : step.selected ? "text-customblue" : "text-gray-500"} overflow-hidden text-ellipsis`}
             style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
           >
             {step.description}
           </div>
 
           <div
-            className={`rounded-full transition duration-500 ease-in-out border-2 h-5 w-5 flex items-center justify-center py-1 ${
-              step.selected ? "border-customblue" : "border-gray-300"
-            } ${step.completed ? "bg-customblue text-white" : ""}`}
+            className={`rounded-full transition duration-500 ease-in-out border-2 h-5 w-5 flex items-center justify-center py-1 ${step.selected ? "border-customblue" : "border-gray-300"} ${step.completed ? "bg-customblue text-white" : ""}`}
           >
             {step.completed && <FaCheck className="text-white text-xs" />}
           </div>
 
           {index !== newSteps.length - 1 && (
             <div
-              className={`flex-auto transition duration-500 ease-in-out border-t-2 ${
-                step.completed ? "border-customblue" : "border-gray-200"
-              }`}
+              className={`flex-auto transition duration-500 ease-in-out border-t-2 ${step.completed ? "border-customblue" : "border-gray-200"}`}
             />
           )}
         </div>
@@ -71,7 +65,7 @@ const Stepper: React.FC<StepperProps> = ({ steps, currentStep }) => {
     [newSteps]
   );
 
-  return <div className="mx-4 p-4 flex justify-between items-center">{displaySteps}</div>;
+  return <div className="mx-4 p-4 mr-16 flex justify-between">{displaySteps}</div>;
 };
 
 export default Stepper;

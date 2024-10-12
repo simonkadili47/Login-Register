@@ -12,9 +12,7 @@ import { StepperContext } from './Context/StepperContext';
 import Login from './Login';
 import Final from './Components/steps/Final';
 import Footer from './Components/Footer';
-
-import { UserData, StepperContextType } from './types/StepperTypes';
-
+import { UserData, StepperContextType } from './types/StepperTypes'
 
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -91,7 +89,7 @@ const App: React.FC = () => {
                         {isFinalStepComplete ? (
                           <>
                             <Stepper steps={steps} currentStep={steps.length} />
-                            <Final steps={steps} currentStep={steps.length} />
+                            <Final steps={steps} currentStep={steps.length - 1} />
                           </>
                         ) : (
                           displayStep(currentStep)
@@ -130,4 +128,4 @@ const ResetStepperState: React.FC<{ setCurrentStep: React.Dispatch<React.SetStat
   return null; 
 };
 
-export default App;
+export default App; 
