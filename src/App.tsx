@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
@@ -12,7 +11,7 @@ import { StepperContext } from './Context/StepperContext';
 import Login from './Login';
 import Final from './Components/steps/Final';
 import Footer from './Components/Footer';
-import { UserData, StepperContextType } from './types/StepperTypes'
+import { UserData, StepperContextType } from './types/StepperTypes';
 
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -60,7 +59,8 @@ const App: React.FC = () => {
     setUserData,
     finalData,
     setFinalData,
-    setCurrentStep,
+    currentStep, 
+    setCurrentStep, 
   };
 
   return (
@@ -128,4 +128,4 @@ const ResetStepperState: React.FC<{ setCurrentStep: React.Dispatch<React.SetStat
   return null; 
 };
 
-export default App; 
+export default App;  
