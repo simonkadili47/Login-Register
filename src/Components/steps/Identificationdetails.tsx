@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { StepperContext } from "../../Context/StepperContext";
 import { FaUser } from "react-icons/fa";
-import { IoImages } from "react-icons/io5";
-import { FaFolder } from "react-icons/fa";
+import image from './image.png';
+import document from './document.png';
 
 const IdentificationDetails: React.FC = () => {
   const context = useContext(StepperContext);
@@ -59,7 +59,7 @@ const IdentificationDetails: React.FC = () => {
             htmlFor="imageUpload"
             className="w-60 sm:w-72 md:w-96 lg:w-[28rem] xl:w-[30rem] h-20 sm:h-24 bg-white border-2 border-gray-200 rounded-md flex flex-col items-center justify-center cursor-pointer text-gray-400"
           >
-            <IoImages className="text-customblue text-5xl mb-2" />
+            <img src={image} alt="" />
             <div className="inline-flex items-center">
               <span className="text-customblue font-bold mr-1">
                 Click or Drop
@@ -100,10 +100,12 @@ const IdentificationDetails: React.FC = () => {
         <div className="mb-6 mt-6">
           <label
             htmlFor="documentUpload"
-            className="w-full h-32 border-2 border-dashed border-customblue bg-customGray rounded-md flex flex-col items-center justify-center cursor-pointer text-gray-400"
+            className="w-full h-36 border-2 border-dashed border-customblue bg-customGray rounded-md flex flex-col items-center justify-center cursor-pointer text-gray-400"
           >
-            <FaFolder className="text-customblue text-8xl sm:text-6xl md:text-7xl lg:text-7xl mt-2 mb-2" />
-            <div className="text-center">
+            <div className="mt-16">
+              <img src={document} alt="" />
+            </div>
+            <div className="text-center mb-14">
               <span className="text-customblue font-bold mr-2">
                 Click or Drop
               </span>
