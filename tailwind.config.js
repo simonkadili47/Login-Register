@@ -14,6 +14,7 @@ export default {
         customgray2:"#edf1f2",
         customgray3:"#e1e4e5"
         
+        
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'], 

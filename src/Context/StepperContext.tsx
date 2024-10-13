@@ -6,10 +6,10 @@ export const StepperContext = createContext<StepperContextType | null>(null);
 export const StepperProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [userData, setUserData] = useState<UserData>({});
   const [finalData, setFinalData] = useState<any[]>([]); 
-  const [currentStep, setCurrentSteps] = useState<number>(0); 
+  const [currentStep, setCurrentStep] = useState<number>(0); 
 
   return (
-    <StepperContext.Provider value={{ userData, setUserData, finalData, setFinalData, currentStep, setCurrentSteps }}>
+    <StepperContext.Provider value={{ userData, setUserData, finalData, setFinalData, currentStep, setCurrentStep }}>
       {children}
     </StepperContext.Provider>
   );

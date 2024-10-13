@@ -2,19 +2,16 @@ import React, { useContext, useState } from 'react';
 import { StepperContext } from '../../Context/StepperContext';
 
 // Define types for userData if not already defined
-interface UserData {
-  // Define the structure of your user data here
-}
 
 const InformationVerification: React.FC = () => {
-  // Get the context and ensure it's not null
+
   const stepperContext = useContext(StepperContext);
   
   if (!stepperContext) {
     throw new Error("useContext must be used within a StepperProvider");
   }
 
-  const { userData } = stepperContext; // Now safe to use userData
+  
   const [isChecked, setIsChecked] = useState(false); 
 
   const handleCheckboxChange = () => {
