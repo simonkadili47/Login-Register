@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
 import Stepper from './Components/Stepper';
@@ -73,6 +73,7 @@ const App: React.FC = () => {
         <div className="flex flex-col min-h-screen font-poppins"> 
           <div className="flex-grow"> 
             <Routes>
+              <Route path="/" element={<Navigate to="/login" />} />
               <Route path="/login" element={<Login />} />
               <Route
                 path="/register"
@@ -128,4 +129,4 @@ const ResetStepperState: React.FC<{ setCurrentStep: React.Dispatch<React.SetStat
   return null; 
 };
 
-export default App;  
+export default App;
